@@ -54,10 +54,6 @@ data/                               # Personal health data (gitignored)
     report.md                       # Markers vs research report
     action-plan.md                  # Evidence-based action plan
   README.md                         # Explains the data directory (committed)
-docs/                               # Documentation
-  sundhed-dk-navigation.md          # Full sundhed.dk navigation guide
-  skills.md                         # How to create Claude Code skills (reference)
-  setup-log.md                      # Log of setup decisions
 ```
 
 ## Key Conventions
@@ -72,10 +68,4 @@ docs/                               # Documentation
 
 ## Creating Skills
 
-Skills follow the Claude Code skill format. Each skill is a directory with a `SKILL.md` file containing YAML frontmatter and markdown instructions. See `docs/skills.md` for the full reference on:
-
-- Frontmatter fields (`name`, `description`, `allowed-tools`, `context`, etc.)
-- Supporting files (templates, scripts, examples)
-- Invocation control (`disable-model-invocation`, `user-invocable`)
-- Dynamic context injection with `!`command`` syntax
-- Running skills in subagents with `context: fork`
+Skills follow the Claude Code skill format. Each skill is a directory with a `SKILL.md` file containing YAML frontmatter and markdown instructions. See the [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) for the full reference.
