@@ -120,6 +120,10 @@ data/                     # Personlige sundhedsdata (gitignored)
 docs/                     # Dokumentation
 ```
 
+## Bidrag
+
+Vi leder efter folk der vil hjælpe med at bygge Danmarks bedste open source-sundhedsplatform. Læs [CONTRIBUTING.md](CONTRIBUTING.md) for at komme i gang.
+
 ## Licens
 
-MIT
+[MIT](LICENSE)

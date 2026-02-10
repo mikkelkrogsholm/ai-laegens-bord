@@ -1,3 +1,6 @@
 # Personal health data - NEVER commit
 data/*
 !data/README.md
+
+# Private notes
+mikkels-noter/
