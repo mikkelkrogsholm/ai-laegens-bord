@@ -5,6 +5,16 @@
 const fs = require('fs');
 const input = JSON.parse(fs.readFileSync('/dev/stdin', 'utf8'));
 
+function formatDate(dateString) {
+  if (!dateString) return 'ukendt';
+  const date = new Date(dateString);
+  return date.toLocaleDateString("da-DK", {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  });
+}
+
 function parseJournaler(responses) {
   const lines = [];
   lines.push('# Journaler (Sygehusforløb)');
@@ -38,8 +48,8 @@ function parseJournaler(responses) {
   // Date range
   const datofiltrering = responses.find(r => r.url.includes('/ejournal/datofiltrering'));
   if (datofiltrering?.body) {
-    const fra = datofiltrering.body.FraDato?.split('T')[0];
-    const til = datofiltrering.body.TilDato?.split('T')[0];
+    const fra = formatDate(datofiltrering.body.FraDato);
+    const til = formatDate(datofiltrering.body.TilDato);
     lines.push(`Datointerval: ${fra} til ${til}`);
     lines.push('');
   }
@@ -55,8 +65,8 @@ function parseJournaler(responses) {
       return;
     }
 
-    const fra = f.DatoFra ? f.DatoFra.split('T')[0] : 'ukendt';
-    const til = f.DatoTil ? f.DatoTil.split('T')[0] : 'pågår';
+    const fra = formatDate(f.DatoFra);
+    const til = f.DatoTil ? formatDate(f.DatoTil) : 'pågår';
 
     lines.push(`## ${i + 1}. ${f.DiagnoseNavn || 'Ingen diagnose'}`);
     lines.push(`- Diagnosekode: ${f.DiagnoseKode || 'ingen'}`);
@@ -64,7 +74,7 @@ function parseJournaler(responses) {
     lines.push(`- Afdeling: ${f.AfdelingNavn || 'ukendt'}`);
     lines.push(`- Sektor: ${f.Sektor || 'ukendt'}`);
     lines.push(`- Periode: ${fra} til ${til}`);
-    lines.push(`- Senest opdateret: ${f.DatoOpdateret ? f.DatoOpdateret.split('T')[0] : 'ukendt'}`);
+    lines.push(`- Senest opdateret: ${formatDate(f.DatoOpdateret)}`);
     lines.push(`- Indhold: ${f.AntalEpikriser || 0} epikriser, ${f.AntalNotater || 0} notater, ${f.AntalDiagnoser || 0} diagnoser, ${f.AntalProcedurer || 0} procedurer`);
     lines.push('');
   });
