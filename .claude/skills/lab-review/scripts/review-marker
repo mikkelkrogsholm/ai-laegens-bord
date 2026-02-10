@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Review marker wrapper
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_PATH="${SCRIPT_DIR}/review-marker"
+
+case "$1" in
+    --path|--location|--where)
+        echo "$SCRIPT_PATH"
+        exit 0
+        ;;
+    --script-dir)
+        echo "$SCRIPT_DIR"
+        exit 0
+        ;;
+esac
+
+node "${SCRIPT_DIR}/review-marker.mjs" "$@"

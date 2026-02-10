@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Extract lab markers wrapper
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_PATH="${SCRIPT_DIR}/extract-markers"
+
+case "$1" in
+    --path|--location|--where)
+        echo "$SCRIPT_PATH"
+        exit 0
+        ;;
+    --script-dir)
+        echo "$SCRIPT_DIR"
+        exit 0
+        ;;
+esac
+
+node "${SCRIPT_DIR}/extract-markers.mjs" "$@"

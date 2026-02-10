@@ -37,13 +37,22 @@ The deliverable is a collection of reusable Claude Code skills that any AI agent
       parse-hjemmemaalinger.js      # → markdown
       parse-forloebsplaner.js       # → markdown
       build-db.js                   # → SQLite database (all sections)
+  lab-review/                       # Cross-reference lab results vs research
+    SKILL.md                        # Skill instructions
+    scripts/                        # extract-markers + review-marker (PubMed + medRxiv)
+    example/                        # Anonymized example output
   playwright-cli/                   # Browser automation skill (dependency)
+flows/                              # Multi-step procedures combining skills
+  lab-deep-dive.md                  # Lab results → research → pattern → action plan
 data/                               # Personal health data (gitignored)
   sundhed-dk/                       # Raw JSON from sundhed.dk APIs
     *.json                          # 11 raw JSON files (one per section)
     parsed/                         # LLM-friendly markdown output
       *.md                          # 11 parsed markdown files
     health.db                       # SQLite database (all sections combined)
+  lab-review/                       # Lab review output (gitignored)
+    report.md                       # Markers vs research report
+    action-plan.md                  # Evidence-based action plan
   README.md                         # Explains the data directory (committed)
 docs/                               # Documentation
   sundhed-dk-navigation.md          # Full sundhed.dk navigation guide
